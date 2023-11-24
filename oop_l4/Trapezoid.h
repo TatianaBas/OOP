@@ -16,11 +16,32 @@ public:
     Trapezoid(const Trapezoid<T> &&other) : _c1(other._c1), _c2(other._c2), _c3(other._c3), _c4(other._c4){};
     ~Trapezoid() = default;
 
-    Trapezoid<T>& operator=(const Trapezoid<T>& other);
+    Trapezoid<T>& operator=(const Trapezoid<T>& other){
+        if(this != &other){
+            _c1 = other._c1;
+            _c2 = other._c2;
+            _c3 = other._c3;
+            _c4 = other._c4;
+        }
+        return *this;
+    }
 
-    Trapezoid<T>& operator=(const Trapezoid<T>&& other);
+    Trapezoid<T>& operator=(const Trapezoid<T>&& other){
+        if(this != &other){
+            _c1 = other._c1;
+            _c2 = other._c2;
+            _c3 = other._c3;
+            _c4 = other._c4;
+        }
+        return *this;
+    }
 
-    bool operator==(const Trapezoid<T>& other);
+    bool operator==(const Trapezoid<T>& other){
+        if(_c1 == other._c1 and _c2 == other._c2 and _c3 == other._c3 and _c4 == other._c4){
+            return true;
+        }
+        return false;
+    }
 
     explicit operator double() const override{
         T _x1 = this->_c1.first, _x2 = this->_c2.first,_x3 = this->_c3.first, _x4 = this->_c4.first;
@@ -62,34 +83,4 @@ std::istream& operator>>(std::istream &in, Trapezoid<T> &tr){
     tr._c4 = d;
 
     return in;
-}
-
-template <class T>
-inline Trapezoid<T>& Trapezoid<T>::operator=(const Trapezoid<T>& other){
-    if(this != &other){
-        _c1 = other._c1;
-        _c2 = other._c2;
-        _c3 = other._c3;
-        _c4 = other._c4;
-    }
-    return *this;
-}
-
-template <class T>
-inline Trapezoid<T>& Trapezoid<T>::operator=(const Trapezoid<T>&& other){
-    if(this != &other){
-        _c1 = other._c1;
-        _c2 = other._c2;
-        _c3 = other._c3;
-        _c4 = other._c4;
-    }
-    return *this;
-}
-
-template <class T>
-inline bool Trapezoid<T>::operator==(const Trapezoid<T>& other){
-    if(_c1 == other._c1 and _c2 == other._c2 and _c3 == other._c3 and _c4 == other._c4){
-        return true;
-    }
-    return false;
 }
