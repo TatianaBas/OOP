@@ -17,11 +17,32 @@ public:
     Pentagon(const Pentagon<T> &&other) : _c1(other._c1), _c2(other._c2), _c3(other._c3), _c4(other._c4), _c5(other._c5){};
     ~Pentagon() = default;
 
-    Pentagon<T>& operator=(const Pentagon<T>& other);
+    Pentagon<T>& operator=(const Pentagon<T>& other){
+        if(this != &other){
+            _c1 = other._c1;
+            _c2 = other._c2;
+            _c3 = other._c3;
+            _c4 = other._c4;
+        }
+        return *this;
+    }
 
-    Pentagon<T>& operator=(const Pentagon<T>&& other);
+    Pentagon<T>& operator=(const Pentagon<T>&& other){
+        if(this != &other){
+            _c1 = other._c1;
+            _c2 = other._c2;
+            _c3 = other._c3;
+            _c4 = other._c4;
+        }
+        return *this;
+    }
 
-    bool operator==(const Pentagon<T>& other);
+    bool operator==(const Pentagon<T>& other){
+        if(_c1 == other._c1 and _c2 == other._c2 and _c3 == other._c3 and _c4 == other._c4){
+            return true;
+        }
+        return false;
+    }
 
     explicit operator double() const override{
         T _x1 = this->_c1.first, _x2 = this->_c2.first,_x3 = this->_c3.first, _x4 = this->_c4.first;
@@ -68,32 +89,4 @@ std::istream& operator>>(std::istream &in, Pentagon<T> &pnt){
     return in;
 }
 
-template <class T>
-inline Pentagon<T>& Pentagon<T>::operator=(const Pentagon<T>& other){
-    if(this != &other){
-        _c1 = other._c1;
-        _c2 = other._c2;
-        _c3 = other._c3;
-        _c4 = other._c4;
-    }
-    return *this;
-}
 
-template <class T>
-inline Pentagon<T>& Pentagon<T>::operator=(const Pentagon<T>&& other){
-    if(this != &other){
-        _c1 = other._c1;
-        _c2 = other._c2;
-        _c3 = other._c3;
-        _c4 = other._c4;
-    }
-    return *this;
-}
-
-template <class T>
-inline bool Pentagon<T>::operator==(const Pentagon<T>& other){
-    if(_c1 == other._c1 and _c2 == other._c2 and _c3 == other._c3 and _c4 == other._c4){
-        return true;
-    }
-    return false;
-}
